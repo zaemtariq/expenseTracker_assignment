@@ -8,9 +8,9 @@ const Web3 = require('web3')
 const Tx = require("ethereumjs-tx").Transaction;
 
 const infura_link = "https://ropsten.infura.io/v3/70d3232596d04f608335f4ec1e72f81e";
-const deployed_contract_address = "0x430935c6f2f3b1073c2cb6a50e5d0373827259d8";
-const account1_public_address = "0x8359605d620D6241f809007de4D674D66Bd4E2c0";
-const account1_privatekey = Buffer.from("c40df1bffefea64f691ff145e47afc1604561f90de3e83ff4484e314a8b40fa9", 'hex');
+const deployed_contract_address = "0xbb2b10171f40e9b7495f806cd0974d771382cd3f";
+const account1_public_address = "0xEf2d267aeCBc7988C05A1f1043f407143184c4CB";
+const account1_privatekey = Buffer.from("b6c2de7cc12f0f2cbe05c3f502b10e9140c58b3b5e2bca0cfc93a11fcb37f874", 'hex');
 const web3 = new Web3(infura_link);
 
 const ABI = [
@@ -154,7 +154,7 @@ function Transaction() {
 				const TxObject = {
 					nonce: web3.utils.toHex(txCount),
 					data: contract.methods.Expense(text, i).encodeABI(),
-					to: "0x430935c6f2f3b1073c2cb6a50e5d0373827259d8",
+					to: "0xbb2b10171f40e9b7495f806cd0974d771382cd3f",
 					gasPrice: web3.utils.toHex(web3.utils.toWei('10', 'gWei')),
 					gasLimit: web3.utils.toHex(3000000)
 				}
@@ -181,7 +181,7 @@ function Transaction() {
 				const TxObject = {
 					nonce: web3.utils.toHex(txCount),
 					data: contract.methods.Income(text, num).encodeABI(),
-					to: "0x430935c6f2f3b1073c2cb6a50e5d0373827259d8",
+					to: "0xbb2b10171f40e9b7495f806cd0974d771382cd3f",
 					gasPrice: web3.utils.toHex(web3.utils.toWei('10', 'gWei')),
 					gasLimit: web3.utils.toHex(3000000)
 				}
