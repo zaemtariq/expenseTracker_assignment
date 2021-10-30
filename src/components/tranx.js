@@ -147,13 +147,14 @@ function Transaction() {
 	}
 
 	function ExpenseTransaction() {
+		const i=Math.abs(num);
 		async function doTrnx() {
 			try {
 				const txCount = await web3.eth.getTransactionCount(account1_public_address);
 				const TxObject = {
 					nonce: web3.utils.toHex(txCount),
-					data: contract.methods.Expense(text, Math.abs(num)).encodeABI(),
-					to: "0x111d2a12288d1c1bcf33e16832f80b7b2a006f24",
+					data: contract.methods.Expense(text, i).encodeABI(),
+					to: "0x430935c6f2f3b1073c2cb6a50e5d0373827259d8",
 					gasPrice: web3.utils.toHex(web3.utils.toWei('10', 'gWei')),
 					gasLimit: web3.utils.toHex(3000000)
 				}
@@ -162,17 +163,17 @@ function Transaction() {
 				const serializedTX = tx.serialize();
 				const raw = '0x' + serializedTX.toString('hex');
 				 await web3.eth.sendSignedTransaction(raw);
-				console.log("Transaction Succesful");
+				console.log("ETransaction Succesful");
+				GetCurentBal();
 				eventFunction();
-				ap();
+
 			} catch (err) {
 				console.log("This is Error:", err);
 			}
 		}
 		doTrnx();
+		
 	}
-
-
 	function IncomeTransaction() {
 		async function doTrnx() {
 			try {
@@ -191,7 +192,7 @@ function Transaction() {
 				 await web3.eth.sendSignedTransaction(raw);
 				console.log("Transaction Succesful");
 				eventFunction();
-				ap();
+				GetCurentBal();
 			} catch (err) {
 				console.log("This is Error:", err);
 			}
@@ -200,7 +201,7 @@ function Transaction() {
 	}
 
 
-	function ap() {
+	function GetCurentBal() {
 		contract.methods.getcurrentBal().call((err, result) => {
 			if (!err) {
 				console.log("reuturned value of retrieve", result);
